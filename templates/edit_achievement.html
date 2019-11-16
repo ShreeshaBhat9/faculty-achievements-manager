@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <div class="jumbotron text-center">
+      <h1>Welcome</h1>
+    </div>
+
+    <hr>
+
+    {% for tname in l %}
+      {% set k = aname[l.index(tname)] %}
+      {% set m = cname[l.index(tname)] %}
+      <table class="table-condensed table-bordered">
+        <tr>
+          <h3><center>{{tname}}<center></h3>
+        </tr>
+        <tr>
+          {% for x in m %}
+              <th class="text-center">{{x}}</th>
+          {% endfor %}
+          <th></th>
+          <th></th>
+        </tr>
+        {% for y in k %}
+          <tr class="success">
+            {% for a in y.values() %}
+              <td>{{a}}</td>
+            {% endfor %}
+            <td><a href="edit/{{tname}}-{{y['id']}}" class="btn btn-default pullright">Edit</a></td>
+            <td>
+              <form action="{{url_for('delete', tname=tname, id=y['id'])}}" method="post">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="submit" value="Delete" class="btn btn-danger pullright">
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+      <hr>
+    {% endfor %}
+
+
+{% endblock %}

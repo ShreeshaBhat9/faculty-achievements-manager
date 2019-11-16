@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h1>Dashboard <small> Welcome {{session.username}}</small></h1>
+    <br><br>
+    <a class="btn btn-success" href="/add_achievement">Add Achievement</a>
+    <br><br>
+    <a class="btn btn-success" href="/edit_achievement">Edit Achievement</a>
+
+    <hr>
+{% endblock %}
